@@ -3,7 +3,7 @@
 // small snapshot into React state for display.
 
 import { useEffect, useState } from 'react';
-import { resetWorld, CONFIG } from '../game/world';
+import { resetWorld } from '../game/world';
 
 export default function Hud({ world }) {
   const [s, setS] = useState(snapshot(world));
@@ -30,15 +30,9 @@ export default function Hud({ world }) {
           {Math.ceil(s.hp)} / {s.maxHp}
         </div>
         <div style={{ color: '#aaa', fontSize: 12, marginTop: 8 }}>AMMO</div>
-        {s.reloading ? (
-          <div style={{ color: '#ffaa00', fontSize: 13, fontWeight: 'bold' }}>
-            RELOADING… {Math.round((1 - s.reloadTimer / CONFIG.RELOAD_TIME) * 100)}%
-          </div>
-        ) : (
-          <div style={{ fontSize: 18, color: '#4488ff', fontWeight: 'bold' }}>
-            {s.ammo}<span style={{ color: '#667788', fontSize: 13 }}> / {s.reserve}</span>
-          </div>
-        )}
+        <div style={{ fontSize: 18, color: '#4488ff', fontWeight: 'bold' }}>
+          ∞<span style={{ color: '#667788', fontSize: 13 }}> unlimited</span>
+        </div>
       </div>
 
       {/* wave / score (top-right) */}

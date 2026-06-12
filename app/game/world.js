@@ -148,9 +148,7 @@ function startWave(world) {
 
 function shoot(world) {
   const p = world.player;
-  if (p.reloading || p.ammo <= 0) return;
-  p.ammo--;
-  if (p.ammo === 0 && p.reserve > 0) startReload(p);
+  // unlimited ammo: firing never depletes the magazine and never reloads
   const mx = p.x + Math.cos(p.angle) * (p.radius + 0.9);
   const mz = p.z + Math.sin(p.angle) * (p.radius + 0.9);
   world.bullets.push({
