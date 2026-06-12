@@ -403,9 +403,13 @@ export default function GamePage() {
     }
 
     // ── Input ─────────────────────────────────────────────────────────────────
+    const MOVE_KEYS = ['arrowup', 'arrowdown', 'arrowleft', 'arrowright', ' '];
     function onKeyDown(e) {
-      keys[e.key.toLowerCase()] = true;
-      if (e.key.toLowerCase() === 'r') player?.startReload();
+      const k = e.key.toLowerCase();
+      // stop arrow keys / space from scrolling the page
+      if (MOVE_KEYS.includes(k)) e.preventDefault();
+      keys[k] = true;
+      if (k === 'r') player?.startReload();
     }
     function onKeyUp(e) { keys[e.key.toLowerCase()] = false; }
 
@@ -662,7 +666,7 @@ export default function GamePage() {
       ctx.fillStyle = 'rgba(255,255,255,0.35)';
       ctx.font = '11px monospace';
       ctx.textAlign = 'center';
-      ctx.fillText('WASD move  •  Mouse aim  •  LMB shoot  •  R reload', canvas.width / 2, canvas.height - 14);
+      ctx.fillText('WASD / Arrows move  •  Mouse aim  •  LMB shoot  •  R reload', canvas.width / 2, canvas.height - 14);
     }
 
     function drawGameOver() {
