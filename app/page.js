@@ -7,7 +7,6 @@ import Hud from './components/Hud';
 import { createWorld } from './game/world';
 
 export default function GamePage() {
-  // single mutable game world, shared between the 3D scene and the HUD
   const worldRef = useRef(null);
   if (!worldRef.current) worldRef.current = createWorld();
   const world = worldRef.current;
